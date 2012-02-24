@@ -25,7 +25,7 @@ public class SocialText extends Controller {
 	}
 
 	private static WSRequest createSocialTextRequest(String url) {
-		return WS.url(url).authenticate("matti.roloux@cegeka.be", "");
+		return WS.url(url).authenticate("jan.oris@cegeka.be", "UKA8TD8A");
 	}
 
 }
