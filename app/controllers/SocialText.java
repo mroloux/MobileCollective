@@ -7,7 +7,7 @@ public class SocialText extends Controller {
 
 	public static void signals() {
 		String result = WS.url("http://cegeka.socialtext.net/data/signals")
-				.authenticate("matti.roloux@cegeka.be", "PW")
+				.authenticate("jan.oris@cegeka.be", "UKA8TD8A")
 				.setHeader("Accept", "application/json")
 				.get()
 				.getString();
