@@ -1,0 +1,19 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div id="signals"></div>
+
+<script>
+$(function() {
+	$.get('SocialText/signals', function(data) {
+		for(var i = 0; i < data.length; ++i) {
+			var photoDiv = '<div class="photo"><img src="SocialText/photo?userId='+ data[i].user_id +'"/></div>';
+			var contentDiv = '<div class="content">'+ data[i].body +'</div>';
+			var authorDiv = '<div class="author">Author: ' + data[i].best_full_name + '</div>';
+			var signalDiv = $('<div class="signal" />').append(photoDiv).append(contentDiv).append(authorDiv);
+			$("#signals").append(signalDiv);
+			console.log(data[i]);
+		}
+	});
+})
+</script>

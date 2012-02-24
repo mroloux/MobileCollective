@@ -11,7 +11,8 @@ public class Application extends Controller {
 		render();
 	}
 
-    public static void login(String user, String pwd) {
-        WS.url(CEGEKA_SOCIALTEXT_ROOT_PATH);
-    }
+	public static void signals() {
+		render();
+	}
+
 }

@@ -1,19 +1,31 @@
 package controllers;
 
-import play.libs.WS;
-import play.mvc.Controller;
-import play.mvc.With;
+import java.io.IOException;
+import java.io.InputStream;
 
-@With(Secure.class)
+import play.libs.WS;
+import play.libs.WS.WSRequest;
+import play.mvc.Controller;
+
 public class SocialText extends Controller {
 
 	public static void signals() {
-		String result = WS.url(Application.CEGEKA_SOCIALTEXT_ROOT_PATH+"/data/signals")
-				.authenticate("matti.roloux@cegeka.be", "PW")
+		String result = createSocialTextRequest("http://cegeka.socialtext.net/data/signals")
 				.setHeader("Accept", "application/json")
 				.get()
 				.getString();
 		renderJSON(result);
+	}
+
+	public static void photo(String userId) throws IOException {
+		InputStream result = createSocialTextRequest("http://cegeka.socialtext.net/data/people/" + userId + "/photo")
+				.get()
+				.getStream();
+		renderBinary(result);
+	}
+
+	private static WSRequest createSocialTextRequest(String url) {
+		return WS.url(url).authenticate("matti.roloux@cegeka.be", "");
 	}
 
 }
