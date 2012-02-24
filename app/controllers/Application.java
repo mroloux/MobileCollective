@@ -1,11 +1,17 @@
 package controllers;
 
+import play.libs.WS;
 import play.mvc.Controller;
 
 public class Application extends Controller {
 
-	public static void index() {
+    public static final String CEGEKA_SOCIALTEXT_ROOT_PATH = "http://cegeka.socialtext.net";
+
+    public static void index() {
 		render();
 	}
 
+    public static void login(String user, String pwd) {
+        WS.url(CEGEKA_SOCIALTEXT_ROOT_PATH);
+    }
 }

@@ -1,14 +1,15 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Login' /}
 
-<div data-role="page" id="login" data-url="login" class="ui-page ui-body ui-page-active">
-    <div data-role="header">
-        <h1>Establish link to Cegeka Collective</h1>
-    </div>
-    <div data-role="content">
-        <div data-role="fieldcontain">
-            <label for="name"></label>
-            <input type="text" name="name" id="name" value=""  />
-        </div>
-    </div>
+<div data-role="header">
+    <h1>Establish link to Cegeka Collective</h1>
+</div>
+<div data-role="content">
+    #{form @Application.login()}
+        <label for="user">User</label>
+        <input type="text" name="user" id="user" value="xxxx@cegeka.be" />
+        <label for="pwd">Password</label>
+        <input type="text" name="pwd" id="pwd" />
+        <input type="submit" type="submit" value="Log in" />
+    #{/form}
 </div>
