@@ -17,10 +17,24 @@ $(function() {
 			var photoDiv = '<div class="photo"><img src="SocialText/photo?user='+getUser()+'&pwd='+getPwd()+'&userId='+ data[i].user_id +'"/></div>';
 			var contentDiv = '<div class="content">'+ data[i].body +'</div>';
 			var authorDiv = '<div class="author">Author: ' + data[i].best_full_name + '</div>';
-			var signalDiv = $('<div class="signal" />').append(photoDiv).append(contentDiv).append(authorDiv);
+			var timestampDiv = '<div class="timestamp">'+ configureTimestamp(data[i].at) +'</div>';
+			//var timestampDiv = '<div class="timestamp">'+ data[i].at +'</div>';
+			var signalDiv = $('<div class="signal" />').append(photoDiv).append(contentDiv).append(authorDiv).append(timestampDiv);
+			
 			$("#signals").append(signalDiv);
 			console.log(data[i]);
 		}
 	});
 })
+
+function configureTimestamp(timestamp)
+{
+	var result = "gepost op ";
+	
+	result += timestamp.substring(0, 9);
+	result += " om ";
+	result += timestamp.substring(11,16);
+	
+	return result;
+}
 </script>
