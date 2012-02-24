@@ -5,9 +5,16 @@
 
 <script>
 $(function() {
-	$.get('SocialText/signals', function(data) {
+    function getUser(){
+        return window.sessionStorage.user;
+    }
+    function getPwd(){
+        return window.sessionStorage.pwd;
+    }
+
+	$.get('SocialText/signals?user='+getUser()+'&pwd='+getPwd(), function(data) {
 		for(var i = 0; i < data.length; ++i) {
-			var photoDiv = '<div class="photo"><img src="SocialText/photo?userId='+ data[i].user_id +'"/></div>';
+			var photoDiv = '<div class="photo"><img src="SocialText/photo?user='+getUser()+'&pwd='+getPwd()+'&userId='+ data[i].user_id +'"/></div>';
 			var contentDiv = '<div class="content">'+ data[i].body +'</div>';
 			var authorDiv = '<div class="author">Author: ' + data[i].best_full_name + '</div>';
 			var timestampDiv = '<div class="timestamp">'+ configureTimestamp(data[i].at) +'</div>';
