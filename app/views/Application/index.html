@@ -2,22 +2,32 @@
 #{set title:'Login' /}
 
 <div data-role="header">
-    <h1>Establish link to Cegeka Collective</h1>
+    <h1>Login to Cegeka Collective</h1>
 </div>
 <div data-role="content">
-    #{form @Application.login(), id:'loginForm'}
-        <label for="user">User</label>
-        <input type="text" name="user" id="user" value="xxxx@cegeka.be" />
+    <form id="loginForm" method="post">
+        <label for="user">Email</label>
+        <input type="text" name="user" id="user" />
         <label for="pwd">Password</label>
         <input type="password" name="pwd" id="pwd" />
         <input type="submit" type="submit" value="Log in" />
-    #{/form}
+    </form>
 </div>
 <script>
     $(function(){
+    	$('#user').focus();
+    	
         $('#loginForm').submit(function(){
+        	function formDataValid() {
+        		return $('#user').val() && $('#pwd').val();
+        	}
+        	
+        	if(!formDataValid()) {
+        		return false;
+        	}
             window.sessionStorage.user= $('#user').val();
             window.sessionStorage.pwd= $('#pwd').val();
+            window.location = '@{Application.signals()}';
         })
     });
 </script>

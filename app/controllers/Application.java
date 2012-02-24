@@ -1,20 +1,15 @@
 package controllers;
 
-import play.libs.WS;
 import play.mvc.Controller;
 
 public class Application extends Controller {
 
-    public static void index() {
+	public static void index() {
 		render();
 	}
 
 	public static void signals() {
 		render();
-	}
-
-	public static void login() {
-		signals();
 	}
 
 }
