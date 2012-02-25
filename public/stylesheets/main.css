@@ -2,3 +2,4 @@
 #signals .signal .photo { float:left; margin:5px; }
 #signals .signal .content { margin:5px; }
 #signals .signal .author { font-style: italic; margin-left:10px; }
+#signals .signal .content a { color: white; }

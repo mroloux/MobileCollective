@@ -28,6 +28,7 @@ public class SocialText extends Controller {
 		InputStream result = createSocialTextRequest(BASE_URL + "/data/people/" + userId + "/photo", user, pwd)
 				.get()
 				.getStream();
+		response.cacheFor("1d");
 		renderBinary(result);
 	}
 

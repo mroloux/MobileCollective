@@ -28,6 +28,7 @@
             window.sessionStorage.user= $('#user').val();
             window.sessionStorage.pwd= $('#pwd').val();
             window.location = '@{Application.signals()}';
+            return false;
         })
     });
 </script>
