@@ -7,6 +7,7 @@ import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.libs.WS.WSRequest;
 import play.mvc.Controller;
+import play.mvc.Http;
 
 public class SocialText extends Controller {
 
@@ -20,7 +21,7 @@ public class SocialText extends Controller {
 		if (response.success()) {
 			renderJSON(response.getString());
 		} else {
-			error("An error occurred while speaking to SocialText");
+			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
 		}
 	}
 

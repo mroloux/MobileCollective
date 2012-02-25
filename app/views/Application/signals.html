@@ -28,6 +28,11 @@ $(function() {
 				$("#signals").append(signalDiv);
 				console.log(data[i]);
 			}
+		},
+		error: function(jqXHR) {
+			if(jqXHR.status == 403) {
+				window.location = "/";				
+			}
 		}
 	});
     
