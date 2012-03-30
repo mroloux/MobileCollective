@@ -46,6 +46,7 @@ body {
 #signals .signal .data {
 	float:left;
 	margin:5px;
+	width: 80%;
 }
 
 #signals .signal .content {
@@ -54,7 +55,11 @@ body {
 
 #signals .signal .author {
 	font-style: italic;
-	margin-left:10px;
+	margin-left:20px;
+}
+
+#signals .signal .timestamp {
+	margin-left:20px;
 }
 
 #signals .signal .content a {

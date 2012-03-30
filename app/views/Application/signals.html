@@ -11,14 +11,11 @@ $(function() {
 			for(var i = 0; i < data.length; ++i) {
 				var signal = data[i];
 			    $.mobile.hidePageLoadingMsg();
+				
+				// Make conversation div
+				var conversationDiv = $('<div class="conversation" />').append(createSignalDiv(signal));
 
-				var photoDiv = '<div class="photo"><img src="SocialText/photo?' + credentials.encodedUserPassword() + '&userId='+ data[i].user_id +'"/></div>';
-				var contentDiv = '<div class="content">'+ data[i].body +'</div>';
-				var authorDiv = '<div class="author">Author: ' + data[i].best_full_name + '</div>';
-				var timestampDiv = '<div class="timestamp">'+ configureTimestamp(data[i].at) +'</div>';
-				//var timestampDiv = '<div class="timestamp">'+ data[i].at +'</div>';
-				var signalDiv = $('<div class="signal" />').append(photoDiv).append(contentDiv).append(authorDiv).append(timestampDiv);
-				$("#signals").append(createSignalDiv(signal));
+				$("#signals").append(conversationDiv);
 			}
 		},
 		error: function(jqXHR) {
@@ -31,17 +28,28 @@ $(function() {
     $.mobile.showPageLoadingMsg();
     
     function createSignalDiv(signal) {
-    	var photoDiv = '<div class="photo"><img src="SocialText/photo?' + credentials.encodedUserPassword() +'&userId='+ signal.user_id +'"/></div>';
+    	
+    	// Make Photo div
+		var photoDiv = '<div class="photo"><img src="SocialText/photo?' + credentials.encodedUserPassword() + '&userId='+ signal.user_id +'"/></div>';
+		
+		// Make content - author - timestamp divs
 		var contentDiv = '<div class="content">'+ signal.body +'</div>';
 		var authorDiv = '<div class="author">Author: ' + signal.best_full_name + '</div>';
 		var timestampDiv = '<div class="timestamp">'+ configureTimestamp(signal.at) +'</div>';
-		var signalDiv = $('<div class="signal" />').append(photoDiv).append(contentDiv).append(authorDiv).append(timestampDiv);
+		
+		// Make data div
+		var dataDiv = $('<div class="data" />').append(contentDiv).append(authorDiv).append(timestampDiv);
+		
+		// Make signal div
+		var signalDiv = $('<div class="signal" />').append(photoDiv).append(dataDiv).append('<div class="buffer"></div>');
+		
 		if(isInReplyTo(signal)) {
 			signalDiv.addClass('reply');
 			signalDiv.click(function() {
 				getSignal(signal.in_reply_to.signal_id, signalDiv);
 			});
 		}
+		
 		return signalDiv;
     }
     
@@ -54,7 +62,7 @@ $(function() {
         });
         
         $.ajax({
-    		url: 'SocialText/replies?signalId=' + signalId + '&user='+encodeURIComponent(getUser())+'&pwd='+encodeURIComponent(getPwd()),
+    		url: 'SocialText/replies?signalId=' + signalId + '&' + credentials.encodedUserPassword(),
     		success: function(data) {
     			for(var i = data.length-1; i >= 0; --i) {
     				var signal = data[i];
