@@ -10,6 +10,8 @@
         <input type="text" name="user" id="user" />
         <label for="pwd">Password</label>
         <input type="password" name="pwd" id="pwd" />
+        <input type="checkbox" name="rememberMe" id="rememberMe"/>
+        <label for="rememberMe">Remember me!</label>
         <input type="submit" type="submit" value="Log in" />
     </form>
 </div>
@@ -25,10 +27,16 @@
         	if(!formDataValid()) {
         		return false;
         	}
-            window.sessionStorage.user= $('#user').val();
-            window.sessionStorage.pwd= $('#pwd').val();
+        	
+        	if ($('#rememberMe').is(':checked')){
+        		window.localStorage.user= $('#user').val();
+				window.localStorage.pwd= $('#pwd').val();
+        	} else {
+	            window.sessionStorage.user= $('#user').val();
+	            window.sessionStorage.pwd= $('#pwd').val();
+        	}
             window.location = '@{Application.signals()}';
             return false;
-        })
+        });
     });
 </script>
