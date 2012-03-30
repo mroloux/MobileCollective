@@ -35,10 +35,9 @@ $(function() {
 		var contentDiv = '<div class="content">'+ signal.body +'</div>';
 		var authorDiv = '<div class="author">Author: ' + signal.best_full_name + '</div>';
 		var timestampDiv = '<div class="timestamp">'+ configureTimestamp(signal.at) +'</div>';
-		var inReplyToDiv = createInReplyToDiv(signal);
-		var signalDiv = $('<div class="signal" />').append(photoDiv).append(contentDiv).append(authorDiv).append(timestampDiv).append(inReplyToDiv);
+		var signalDiv = $('<div class="signal" />').append(photoDiv).append(contentDiv).append(authorDiv).append(timestampDiv);
 		if(isInReplyTo(signal)) {
-			signalDiv.addClass('inReplyTo');
+			signalDiv.addClass('reply');
 			signalDiv.click(function() {
 				getSignal(signal.in_reply_to.signal_id, signalDiv);
 			});
@@ -50,7 +49,6 @@ $(function() {
         $.ajax({
     		url: 'SocialText/signal?signalId=' + signalId + '&' + credentials.encodedUserPassword(),
     		success: function(data) {
-    			console.log('great success');
     			signalDiv.before(createSignalDiv(data));
     		}
         });
@@ -68,12 +66,6 @@ $(function() {
 	
 	function isInReplyTo(signal) {
 		return signal.in_reply_to;
-	}
-	
-	function createInReplyToDiv(signal) {
-		if(isInReplyTo(signal)) {
-			return '<div>This is a reply</div>';
-		}
 	}
 })
 
