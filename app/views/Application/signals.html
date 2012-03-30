@@ -40,17 +40,18 @@ $(function() {
 		if(isInReplyTo(signal)) {
 			signalDiv.addClass('inReplyTo');
 			signalDiv.click(function() {
-				getSignal(signal.in_reply_to.signal_id);
+				getSignal(signal.in_reply_to.signal_id, signalDiv);
 			});
 		}
 		return signalDiv;
     }
     
-    function getSignal(signalId) {
+    function getSignal(signalId, signalDiv) {
         $.ajax({
     		url: 'SocialText/signal?signalId=' + signalId + '&user='+encodeURIComponent(getUser())+'&pwd='+encodeURIComponent(getPwd()),
     		success: function(data) {
     			console.log('great success');
+    			signalDiv.before(createSignalDiv(data));
     		}
         });
     };
