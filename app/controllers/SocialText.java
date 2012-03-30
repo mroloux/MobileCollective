@@ -33,6 +33,18 @@ public class SocialText extends Controller {
 		renderBinary(result);
 	}
 
+	public static void signal(int signalId, String user, String pwd) {
+		HttpResponse response = createSocialTextRequest(BASE_URL + "/data/signals/" + signalId, user, pwd)
+				.setHeader("Accept", "application/json")
+				.get();
+
+		if (response.success()) {
+			renderJSON(response.getString());
+		} else {
+			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
+		}
+	}
+
 	private static WSRequest createSocialTextRequest(String url, String user, String pwd) {
 		return WS.url(url).authenticate(user, pwd);
 	}
