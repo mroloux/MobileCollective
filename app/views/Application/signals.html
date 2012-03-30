@@ -23,7 +23,7 @@ $(function() {
 		},
 		error: function(jqXHR) {
 			if(jqXHR.status == 403) {
-				window.location = "/";				
+				window.location = "/";	
 			}
 		}
 	});
@@ -50,8 +50,18 @@ $(function() {
         $.ajax({
     		url: 'SocialText/signal?signalId=' + signalId + '&user='+encodeURIComponent(getUser())+'&pwd='+encodeURIComponent(getPwd()),
     		success: function(data) {
-    			console.log('great success');
     			signalDiv.before(createSignalDiv(data));
+    		}
+        });
+        
+        $.ajax({
+    		url: 'SocialText/replies?signalId=' + signalId + '&user='+encodeURIComponent(getUser())+'&pwd='+encodeURIComponent(getPwd()),
+    		success: function(data) {
+    			for(var i = data.length-1; i >= 0; --i) {
+    				var signal = data[i];
+    			    $.mobile.hidePageLoadingMsg();
+    			    signalDiv.before(createSignalDiv(signal));
+    			}
     		}
         });
     };
