@@ -1,5 +1,88 @@
-#signals .signal { margin: 10px; clear:both; }
-#signals .signal .photo { float:left; margin:5px; }
-#signals .signal .content { margin:5px; }
-#signals .signal .author { font-style: italic; margin-left:10px; }
-#signals .signal .content a { color: white; }
+/*--------------------------------------------------------------------------
+		GENERAL
+--------------------------------------------------------------------------*/
+* {
+	margin: 0px auto;
+	padding: 0px;
+}
+
+body {
+	background-color: red;
+}
+
+
+
+
+/*--------------------------------------------------------------------------
+		SIGNALS
+--------------------------------------------------------------------------*/
+
+#signals .conversation {
+	margin: 20px;
+	padding: 5px;
+	
+	border: 2px solid white;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	
+	font-family: arial, verdana;
+	font-size: 15px;
+}
+
+#signals .signal {
+	margin: 20px;
+	padding: 5px;
+	width: 100%;
+	
+	border-left: 5px solid white;
+}
+
+#signals .signal .photo {
+	float:left;
+	margin:5px;
+}
+
+#signals .signal .data {
+	float:left;
+	margin:5px;
+	width: 80%;
+}
+
+#signals .signal .content {
+	margin:5px;
+}
+
+#signals .signal .author {
+	font-style: italic;
+	margin-left:20px;
+}
+
+#signals .signal .timestamp {
+	margin-left:20px;
+}
+
+#signals .signal .content a {
+	color: white;
+}
+
+#signals .reply {
+	border-left: 5px solid #3399FF;
+}
+
+#signals .indent {
+	margin-left: 40px;
+}
+
+#signals .signal-image {
+	width: 80px;
+	height: 80px;
+}
+
+#signals .buffer {
+	clear:both;
+}
+
+
+
+
