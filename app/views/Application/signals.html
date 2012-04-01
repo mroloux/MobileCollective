@@ -1,4 +1,4 @@
-#{extends 'main.html' /}
+#{extends 'applicationTemplate.html' /}
 #{set title:'Home' /}
 
 <div id="signals"></div>
@@ -6,13 +6,13 @@
 <script>
 $(function() {
     $.ajax({
-		url: 'SocialText/signals?'+credentials.encodedUserPassword(),
+		url: 'SocialText/signals?'+credentials.urlSafeUserPassword(),
 		success: function(data) {
 			for(var i = 0; i < data.length; ++i) {
 				var signal = data[i];
 			    $.mobile.hidePageLoadingMsg();
 
-				var photoDiv = '<div class="photo"><img src="SocialText/photo?' + credentials.encodedUserPassword() + '&userId='+ data[i].user_id +'"/></div>';
+				var photoDiv = '<div class="photo"><img src="SocialText/photo?' + credentials.urlSafeUserPassword() + '&userId='+ data[i].user_id +'"/></div>';
 				var contentDiv = '<div class="content">'+ data[i].body +'</div>';
 				var authorDiv = '<div class="author">Author: ' + data[i].best_full_name + '</div>';
 				var timestampDiv = '<div class="timestamp">'+ configureTimestamp(data[i].at) +'</div>';
@@ -31,7 +31,7 @@ $(function() {
     $.mobile.showPageLoadingMsg();
     
     function createSignalDiv(signal) {
-    	var photoDiv = '<div class="photo"><img src="SocialText/photo?' + credentials.encodedUserPassword() +'&userId='+ signal.user_id +'"/></div>';
+    	var photoDiv = '<div class="photo"><img src="SocialText/photo?' + credentials.urlSafeUserPassword() +'&userId='+ signal.user_id +'"/></div>';
 		var contentDiv = '<div class="content">'+ signal.body +'</div>';
 		var authorDiv = '<div class="author">Author: ' + signal.best_full_name + '</div>';
 		var timestampDiv = '<div class="timestamp">'+ configureTimestamp(signal.at) +'</div>';

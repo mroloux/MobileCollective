@@ -17,6 +17,11 @@
 </div>
 <script>
     $(function(){
+        if (credentials.isLoggedIn()){
+            window.location = '@{Application.signals()}';
+            return;
+        }
+
     	$('#user').focus();
     	
         $('#loginForm').submit(function(){
@@ -28,13 +33,7 @@
         		return false;
         	}
         	
-        	if ($('#rememberMe').is(':checked')){
-        		window.localStorage.user= $('#user').val();
-				window.localStorage.pwd= $('#pwd').val();
-        	} else {
-	            window.sessionStorage.user= $('#user').val();
-	            window.sessionStorage.pwd= $('#pwd').val();
-        	}
+            credentials.logIn($('#user').val(), $('#pwd').val(), $('#rememberMe').is(':checked'));
             window.location = '@{Application.signals()}';
             return false;
         });

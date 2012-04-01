@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+<div data-role="header" data-position="inline">
+    <h1>Cegeka Collective</h1>
+    <a href="/signals" id="logout" class="ui-btn-right">Logout</a>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#logout").bind("click",function(){
+            credentials.logout();
+            window.location = '@{Application.index()}';
+        });
+    });
+</script>
+#{doLayout /}
