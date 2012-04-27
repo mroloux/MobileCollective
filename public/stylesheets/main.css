@@ -27,8 +27,6 @@
 #signals .signal {
 	margin: 20px;
 	padding: 5px;
-	width: 100%;
-	
 	border-left: 5px solid white;
 }
 
