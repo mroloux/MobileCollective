@@ -70,7 +70,7 @@ public class SocialText extends Controller {
 				.post();
 
 		if (response.success()) {
-			renderJSON("ok");
+			redirect("/");
 		} else {
 			respondWithSocialtextError();
 		}

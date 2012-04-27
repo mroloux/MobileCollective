@@ -2,11 +2,20 @@
 #{set title:'Home' /}
 
 <div id="newSignalDiv">
-	<form action="/SocialText/signal">
+	<form action="/SocialText/postSignal" id="newSignalForm" method="post">
 		<div data-role="fieldcontain">
 			<label for="newSignalTextarea">Signal:</label>
-			<textarea maxlength="400" name="newSignalTextarea" id="newSignalTextarea"></textarea>
+			<textarea maxlength="400" name="signal"></textarea>
 		</div>
 		<input type="submit" type="submit" value="Post signal" />
+		<input type="hidden" name="user" id="user" />
+		<input type="hidden" name="pwd" id="pwd" />
 	</form>
 </div>
+
+<script>
+$(function() {
+	$('#user').attr('value', credentials.user());
+	$('#pwd').attr('value', credentials.password());
+})
+</script>
