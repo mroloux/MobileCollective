@@ -11,5 +11,9 @@ public class Application extends Controller {
 	public static void signals() {
 		render();
 	}
+	
+	public static void newSignal() {
+		render();
+	}
 
 }
