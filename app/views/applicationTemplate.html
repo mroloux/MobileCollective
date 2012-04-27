@@ -1,8 +1,14 @@
 #{extends 'main.html' /}
-<div data-role="header" data-position="fixed" data-theme="c">
-    <a href="/newSignal" id="newSignalButton" data-icon="plus" class="ui-btn-left">New signal</a>
+<div data-role="header" data-position="fixed">
+	<a href="" id="backToSignalsButton" data-rel="back">Back</a>
     <h1>Cegeka Collective</h1>
     <a href="/signals" id="logout" class="ui-btn-right">Logout</a>
+	
+	<div data-role="navbar" data-iconpos="left">
+		<ul>
+			<li><a href="/newSignal" id="newSignalButton" data-icon="plus">New signal</a></li>
+		</ul>
+	</div>
 </div>
 <script type="text/javascript">
     $(function(){
