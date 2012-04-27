@@ -1,5 +1,7 @@
 package controllers;
 
+import static play.mvc.Http.StatusCode.INTERNAL_ERROR;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -7,7 +9,6 @@ import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.libs.WS.WSRequest;
 import play.mvc.Controller;
-import play.mvc.Http;
 
 public class SocialText extends Controller {
 
@@ -21,7 +22,7 @@ public class SocialText extends Controller {
 		if (response.success()) {
 			renderJSON(response.getString());
 		} else {
-			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
+			respondWithSocialtextError();
 		}
 	}
 
@@ -41,7 +42,7 @@ public class SocialText extends Controller {
 		if (response.success()) {
 			renderJSON(response.getString());
 		} else {
-			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
+			respondWithSocialtextError();
 		}
 	}
 
@@ -53,12 +54,30 @@ public class SocialText extends Controller {
 		if (response.success()) {
 			renderJSON(response.getString());
 		} else {
-			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
+			respondWithSocialtextError();
+		}
+	}
+
+	public static void postSignal(String signal, String user, String pwd) {
+		HttpResponse response = createSocialTextRequest(BASE_URL + "/data/signals/", user, pwd)
+				.setHeader("content-type", "application/json")
+				.setHeader("Accept", "application/json")
+				.body("{\"signal\": \"" + signal + "\"}")
+				.post();
+
+		if (response.success()) {
+			renderJSON("ok");
+		} else {
+			respondWithSocialtextError();
 		}
 	}
 
 	private static WSRequest createSocialTextRequest(String url, String user, String pwd) {
 		return WS.url(url).authenticate(user, pwd);
+	}
+
+	private static void respondWithSocialtextError() {
+		error(INTERNAL_ERROR, "An error occurred while speaking to SocialText");
 	}
 
 }
