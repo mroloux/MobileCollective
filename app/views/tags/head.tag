@@ -12,6 +12,7 @@
     <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
     <script src="@{'/public/javascripts/jquery.mobile-1.0.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
     <script src="@{'/public/javascripts/collective.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+    <script src="@{'/public/javascripts/listview.js'}" type="text/javascript" charset="${_response_encoding}"></script>
     #{get 'moreScripts' /}
     <script type="text/javascript">
         $.mobile.defaultPageTransition = 'none';

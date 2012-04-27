@@ -1,0 +1,46 @@
+#{extends 'applicationTemplate.html' /}
+#{set title:'Home' /}
+
+<script type="text/javascript">
+$(document).bind("pageinit", function() {
+   loadList();
+    });
+
+/*
+function loadPage(){
+    var list = $("<ul data-role='listview' id='signals' />");
+    var listItem1 = $("<li />");
+    var signal1 = $("<h3><img src='@{'/public/images/medium.png'}' /> HeaderTekst 1</h3><p>Content Tekst 1</p>");
+    listItem1.append(signal1);
+    var listItem2 = $("<li />");
+    var signal2 = $("<h3><img src='@{'/public/images/medium.png'}' /> HeaderTekst 2</h3><p>Content Tekst 2</p>");
+    listItem2.append(signal2);
+    var listItem3 = $("<li />");
+    var signal3 = $("<h3><img src='@{'/public/images/medium.png'}' /><p> HeaderTekst 3</p></h3><p>Content Tekst 3</p>");
+    listItem3.append(signal3);
+    list.append(listItem1).append(listItem2).append(listItem3);
+
+    list.appendTo(".ui-page");
+    $(".ui-page").trigger("create")
+}
+
+$(document).bind("pageinit", function() {
+   loadPage();
+});
+*/
+</script>
+
+<!--
+<ul data-role='listview' id='signals'>
+    <li>
+        <h3><img src='@{'/public/images/medium.png'}' /> HeaderTekst 1</h3><p>Content Tekst 1</p>
+    </li>
+    <li>
+        <h3><img src='@{'/public/images/medium.png'}' /> HeaderTekst 2</h3><p>Content Tekst 2</p>
+    </li>
+    <li>
+        <h3><img src='@{'/public/images/medium.png'}' /> HeaderTekst 3</h3><p>Content Tekst 3</p>
+    </li>
+</ul>
+
+-->

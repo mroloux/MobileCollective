@@ -12,13 +12,13 @@
         <input type="password" name="pwd" id="pwd" />
         <input type="checkbox" name="rememberMe" id="rememberMe"/>
         <label for="rememberMe">Remember me!</label>
-        <input type="submit" type="submit" value="Log in" />
+        <input type="submit" value="Log in" />
     </form>
 </div>
-<script>
+<script type="text/javascript">
     $(function(){
         if (credentials.isLoggedIn()){
-            window.location = '@{Application.signals()}';
+            window.location = '@{Application.listview()}';
             return;
         } else {
             $('#loginForm').show();
