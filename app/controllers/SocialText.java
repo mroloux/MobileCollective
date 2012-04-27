@@ -14,6 +14,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
+// TODO: refactor this controller so that all requests pass through SocialTextService
 public class SocialText extends Controller {
 
 	private static final String BASE_URL = "http://cegeka.socialtext.net";
