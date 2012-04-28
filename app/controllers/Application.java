@@ -17,7 +17,7 @@ public class Application extends Controller {
 	}
 
 	public static void newSignal(String user, String pwd) {
-		Set<Group> groups = new SocialTextService().findGroups(user, pwd);
+		Set<Group> groups = SocialTextService.findGroups(user, pwd);
 		render(groups);
 	}
 
