@@ -2,3 +2,6 @@
 
 require:
     - play
+    - org.easytesting -> fest-assert 1.4
+    - com.google.guava -> guava 11.0.2
+    

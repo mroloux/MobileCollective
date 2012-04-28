@@ -1,5 +1,7 @@
 package controllers;
 
+import static play.mvc.Http.StatusCode.INTERNAL_ERROR;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -7,8 +9,12 @@ import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.libs.WS.WSRequest;
 import play.mvc.Controller;
-import play.mvc.Http;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
+// TODO: refactor this controller so that all requests pass through SocialTextService
 public class SocialText extends Controller {
 
 	private static final String BASE_URL = "http://cegeka.socialtext.net";
@@ -21,7 +27,7 @@ public class SocialText extends Controller {
 		if (response.success()) {
 			renderJSON(response.getString());
 		} else {
-			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
+			respondWithSocialtextError();
 		}
 	}
 
@@ -41,7 +47,7 @@ public class SocialText extends Controller {
 		if (response.success()) {
 			renderJSON(response.getString());
 		} else {
-			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
+			respondWithSocialtextError();
 		}
 	}
 
@@ -53,12 +59,39 @@ public class SocialText extends Controller {
 		if (response.success()) {
 			renderJSON(response.getString());
 		} else {
-			error(Http.StatusCode.FORBIDDEN, "An error occurred while speaking to SocialText");
+			respondWithSocialtextError();
 		}
+	}
+
+	public static void postSignal(String signal, String user, String pwd) {
+		HttpResponse response = createSocialTextRequest(BASE_URL + "/data/signals/", user, pwd)
+				.setHeader("content-type", "application/json")
+				.setHeader("Accept", "application/json")
+				.body(createPostSignalRequestBody(signal))
+				.post();
+
+		if (response.success()) {
+			redirect("/");
+		} else {
+			respondWithSocialtextError();
+		}
+	}
+
+	private static String createPostSignalRequestBody(String signal) {
+		JsonObject requestBody = new JsonObject();
+		requestBody.addProperty("signal", signal);
+		JsonArray groups = new JsonArray();
+		groups.add(new JsonPrimitive(14));
+		requestBody.add("group_ids", groups);
+		return requestBody.toString();
 	}
 
 	private static WSRequest createSocialTextRequest(String url, String user, String pwd) {
 		return WS.url(url).authenticate(user, pwd);
+	}
+
+	private static void respondWithSocialtextError() {
+		error(INTERNAL_ERROR, "An error occurred while speaking to SocialText");
 	}
 
 }

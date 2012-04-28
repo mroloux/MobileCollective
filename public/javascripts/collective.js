@@ -12,7 +12,7 @@ var credentials = (function() {
 	function urlSafeUserPassword(){
 		return "user="+encodeURIComponent(user())+"&pwd="+encodeURIComponent(pwd());
 	}
-
+	
 	function logout(){
         storage.clear();
 	}
@@ -55,6 +55,8 @@ var credentials = (function() {
 	    logIn: logIn,
 	    isLoggedIn: isLoggedIn,
 		urlSafeUserPassword: urlSafeUserPassword,
-		logout: logout
+		logout: logout,
+		user: user,
+		password: pwd
 	}
 })();
